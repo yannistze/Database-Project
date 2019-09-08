@@ -17,7 +17,7 @@ Install libraries
 
 Edit `server.py` to set your database URI
 
-        DATABASEURI = "<your database uri>"
+        DATABASEURI = "<database uri>"
 
 
 Run it in the shell
