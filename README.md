@@ -1,6 +1,6 @@
 # Database Project
 
-"New York City Museums Event Recommendation Application using Flask"
+"New York City Museums, Event Recommendation Application using Flask"
 
 ## Install Required Packages
 
