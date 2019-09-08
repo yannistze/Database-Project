@@ -1,4 +1,9 @@
+# Database Project
 
+"Museum Events Recommendation System for New York City using Flask in Python"
+
+
+## Install Required Packages
 
 Install pip if needed
 
@@ -9,6 +14,8 @@ Install libraries
         pip install click flask sqlalchemy
 
 
+## Locate and excecute `server.py` file inside webserver folder
+
 Edit `server.py` to set your database URI
 
         DATABASEURI = "<your database uri>"
@@ -16,11 +23,8 @@ Edit `server.py` to set your database URI
 
 Run it in the shell
 
-
         python server.py
 
 Get help:
 
         python server.py --help
-
-      
