@@ -12,14 +12,14 @@ import hashlib
 
 tmpl_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
 app = Flask(__name__, template_folder=tmpl_dir)
-app.secret_key = b'_b48zxcleyiub0b@$*)12b4b82nastdb1480ts$B$@*!)'
+app.secret_key = b'<secret_key>'
 
 
 
-DB_USER = "cv2451"
-DB_PASSWORD = "tbejQA2wzb"
+DB_USER = "<username>"
+DB_PASSWORD = "<password>"
 
-DB_SERVER = "w4111.cisxo09blonu.us-east-1.rds.amazonaws.com"
+DB_SERVER = "<server URL>"
 
 DATABASEURI = "postgresql://"+DB_USER+":"+DB_PASSWORD+"@"+DB_SERVER+"/w4111"
 
