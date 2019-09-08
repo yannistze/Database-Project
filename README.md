@@ -1,3 +1,3 @@
 # Database Project
 
-"Museum Events Recomenndation System for New York City using Flask in Python"
+"Museum Events Recommendation System for New York City using Flask in Python"
