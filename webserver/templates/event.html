@@ -1,0 +1,205 @@
+<!-- Specific Event page -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'head.html' %}
+
+{% block body %}
+<body style="padding-bottom: 100px; padding-top: 100px">
+
+  {% include 'navbar.html' %}
+
+  <!-- Page Content -->
+
+  <section class="text-center" style="padding: 25px">
+    <div class="container">
+
+      <div class="row text-center flex-column">
+        <div class="row justify-content-center">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
+            <h1 class="font-weight-light">{{event['name']}}</h1>
+          </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-8 col-8 
+                        offset-lg-4 offset-md-3 offset-sm-2 offset-2">
+              <div class="card" style="max-height: 700px">
+                <div class="card-body">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item" style="font-size: 13px">Location: {{event['location']}}</li>
+                    <li class="list-group-item" style="font-size: 13px">Date: {{event['event_date']}}</li>
+                    <li class="list-group-item" style="font-size: 13px">Start Time: {{event['start_time']}} | End Time: {{event['end_time']}}</li>
+                    <li class="list-group-item" style="font-size: 13px">Event Description: {{event['description']}}</li>
+                    <br>
+                    
+                  </ul>
+                </div>
+                <div class="card-footer">
+                  <form class="d-inline-block form-inline mx-auto"
+                          method='POST' action='/event'>
+                      <div class="input-group">
+                        <input value={{att}}
+                               class="form-control" 
+                               aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                          <button class="btn btn-primary" type='submit' name='att_value' value={{att}}>
+                            <i class="fas fa-check-square"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.container -->
+  </section>
+
+  <section class="text-center bg-secondary" style="padding: 25px">
+    <div class="container">
+
+      <h1 class="font-weight-light" style="padding-bottom: 25px">Attending Friends</h1>
+
+      <div class="row">
+        
+        <div class="mx-auto" style="width: 600px">
+
+          {% if att_friends %}
+
+          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" 
+                  data-slide-to="0" 
+                  style="background-color: gray"
+                  class="active"></li>
+            </ol>
+
+              <div class="carousel-inner" style="padding-left: 100px; padding-right: 100px">
+
+                {% for n in att_friends %}
+
+                  <div class="carousel-item {% if loop.index == 1 %}active{% endif %}">
+                  
+                    <div class="card h-100">
+                      <i class="far fa-6x fa-user-circle" style="padding-top: 5px"></i>
+                      <div class="card-body">
+                        <h3 class="card-title">{{n['name']}}</h3>
+                      </div>
+                    </div>
+
+                  </div>
+
+
+                {% endfor %}
+
+              </div>
+
+              <a class="carousel-control-prev" 
+                 href="#carouselExampleIndicators" 
+                 role="button" 
+                 data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+
+              <a class="carousel-control-next" 
+                 href="#carouselExampleIndicators" 
+                 role="button" 
+                 data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+          </div>
+
+          {% else %}
+
+            <h3 class="font-weight-light" style="padding-bottom: 25px; color:white">No Friends Attending</h3>
+
+          {% endif %}
+
+        </div>
+          
+      </div>
+
+    </div>
+  </section>
+
+  <section class="text-center" style="padding: 25px">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
+          <h1 class="font-weight-light" style="padding-bottom: 25px">Related Posts</h1>
+
+          {% if posts %}
+
+            <!-- Post Content Column -->
+            <div class="col-lg-10 col-md-10 col-sm-10 col-10
+                        offset-lg-1 offset-md-1 offset-sm-1 offset-1">
+
+              {% for n in posts %}
+
+                <!-- Title -->
+                <h1 class="mt-4 font-weight-light">{{n['title']}}</h1>
+                <!-- Date/Time -->
+                <p>Posted on, {{n['post_date']}} | Rating: {{n['rating']}}</p>
+                <hr>
+                <!-- Post Content -->
+                <p class="lead">{{n['post_text']}}</p>
+                <br>
+
+                <p style="text-align: center; padding: 0px !important">***</p>
+
+              {% endfor %}
+
+
+            </div>
+
+          {% else %}
+
+            <h3 class="font-weight-light" style="padding-bottom: 25px; color:black">No Posts Yet</h3>
+
+          {% endif %}
+
+        </div>
+
+      </div>
+      <!-- /.row -->
+
+      <!-- New Post Form -->
+      <div class="row">
+        <div class="col-lg-10 col-md-10 col-sm-10 col-10
+                      offset-lg-1 offset-md-1 offset-sm-1 offset-1">
+          <div class="card my-4">
+            <h5 class="card-header font-weight-light">Create a New Post:</h5>
+            <div class="card-body">
+              <form method='POST' action='/post'>
+                <h4 class="font-weight-light">Title:</h4>
+                <input type='text' name='title' style="width:100%">
+                <h5 class="font-weight-light">Rating:</h5><input type='text' name='rating'>
+                <hr>
+                <div class="form-group">
+                  <h4 class="font-weight-light">Text:</h4>
+                  <textarea class="form-control" rows="3" name='post_text'></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" value='Post'>Post</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  {% include 'footer.html' %}
+
+</body>
+{% endblock %}
+
+</html>

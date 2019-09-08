@@ -1,0 +1,59 @@
+<!-- Profile page -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'head.html' %}
+
+{% block body %}
+<body style="padding-bottom: 100px; padding-top: 100px">
+
+  {% include 'navbar.html' %}
+
+  <!-- Page Content -->
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-lg-10 col-md-10 col-sm-10 col-10
+                  offset-lg-1 offset-md-1 offset-sm-1 offset-1">
+        <div class="p-3 p-lg-5 d-flex align-items-center">
+          <div class="w-100 font-weight-light">
+            <h1 class="mb-0">{{data['name']}}</h1>
+            <div class="subheading mb-5">User ID - {{data['u_id']}} | {{data['dob']}} |
+              <a href="mailto:name@email.com">{{data['email']}}</a>
+            </div>
+            <p class="lead mb-5">{{data['description']}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- New Post Form -->
+    <div class="row">
+      <div class="col-lg-10 col-md-10 col-sm-10 col-10
+                  offset-lg-1 offset-md-1 offset-sm-1 offset-1">
+        <div class="card my-4">
+          <h5 class="card-header font-weight-light">Update Description:</h5>
+          <div class="card-body">
+            <form method='POST' action='/profile'>
+              <p>Old Description: {{data['description']}}</p>
+              <div class="form-group">
+                <textarea class="form-control" rows="3" name='description'></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" value="Update">Update</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container -->
+
+  {% include 'footer.html' %}
+
+</body>
+{% endblock %}
+
+</html>

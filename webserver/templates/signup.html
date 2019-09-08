@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'head.html' %}
+
+<body class="bg-dark">
+
+  <div class="container">
+
+    <div class="card card-register mx-auto mt-5">
+      <div class="card-header">New User Registration</div>
+      <div class="card-body">
+
+        <form method="POST" action="/signup">
+
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+
+                  <div class="form-group">
+                    <div class="form-label-group">
+                      <input type="text" 
+                             name="name" 
+                             class="form-control" 
+                             placeholder="Full Name" 
+                             autofocus="autofocus">
+                      <label for="name">Full Name</label>
+                    </div>
+                  </div>
+
+              </div>
+
+              <div class="col-md-6">
+
+                <div class="form-group">
+                  <div class="form-label-group">
+                    <input type="date" 
+                           name="dob"
+                           class="form-control">
+                    <label for="dob">Date of Birth</label>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="form-label-group">
+              <input type="email" 
+                     name="email"
+                     class="form-control" 
+                     placeholder="Email Address">
+              <label for="email">Email Address</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="form-label-group">
+              <input type="textarea" 
+                     name="description"
+                     class="form-control" 
+                     placeholder="Description">
+              <label for="description">Description</label>
+            </div>
+          </div>
+
+          <p> Please insert a Password Containing the following:</p>
+          <ul>
+            <li> At least 8 characters & No more than 128 characters.</li>
+            <li> At least 1 special character.</li>
+            <li> At least one Upper Case Character.</li>
+          </ul>
+
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input type="password" 
+                         name="password" 
+                         class="form-control" 
+                         placeholder="Password">
+                  <label for="password">Password</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  <input type="password"
+                         name="confirmpassword" 
+                         class="form-control" 
+                         placeholder="Confirm password">
+                  <label for="confirmpassword">Confirm password</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-block" type="submit">Register</button>
+
+        </form>
+
+        <div class="text-center">
+          <a class="d-block small mt-3" href="/">Login Page</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+
+</html>

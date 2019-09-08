@@ -1,0 +1,169 @@
+<!-- Museums page -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'head.html' %}
+
+{% block body %}
+<body style="padding-bottom: 100px; padding-top: 100px">
+
+  {% include 'navbar.html' %}
+
+  <!-- Page Content -->
+  <div class="container">
+    
+    <div class="col-lg-10 col-md-10 col-sm-10 col-10 mb-4">
+      <h1 class="font-weight-light" style="padding-bottom: 25px">Favorite Museums</h1>
+    </div>
+
+    <div class="row text-center">
+      {% if favs %}
+
+        {% for n in favs %}
+
+            <div class="col-lg-3 col-md-6 col-sm-10 col-10 
+                        offset-lg-0 offset-md-0 offset-sm-1  offset-1 mb-4">
+              <div class="card h-100">
+                <img class="card-img-top" src="http://placehold.it/500x325" alt="">
+                <div class="card-body">
+                  <h3 class="card-title">{{n['name']}}</h3>
+                  <h6 class="card-text">{{n['city']}}</h6>
+                  <form method="POST" action='/museum'>
+                    <div class="input-group">
+                      <label for="m_id" class="form-control" >Click button for more...</label>
+                      <input type="submit" name="m_id" value={{n['museum_id']}} class="btn btn-primary">
+                    </div>
+                  </form>
+                  <br> 
+                  <p class="card-text">{{n['description']}}</p>
+                  <br>
+
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item" style="font-size: 13px">Address: {{n['address_number']}} {{n['address_street']}}</li>
+                    <li class="list-group-item" style="font-size: 13px">Zip Code: {{n['address_zipcode']}}</li>
+                  </ul>
+                </div>
+                <div class="card-footer">
+                  <a href="{{n['website']}}" class="btn btn-primary">Website</a>
+                </div>
+              </div>
+            </div>
+
+        {% endfor %}
+
+      {% else %}
+
+        <h3 class="font-weight-light" style="padding-bottom: 25px; color:black"> Unfortunately, there are no Favorite Museums Yet...</h3>
+
+      {% endif %}
+    </div>
+    <!-- /.row -->
+
+    <div class="col-lg-10 col-md-10 col-sm-10 col-10 mb-4">
+      <h1 class="font-weight-light" style="padding-top: 25px; padding-bottom: 25px">Other Museums</h1>
+    </div>
+
+      <div class="row">
+
+        <div class="mx-auto" style="width: 500px">
+
+          {% if others %}
+
+          <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+
+              <div class="carousel-inner" style="padding-left: 40px; padding-right: 40px">
+
+                {% for n in others %}
+
+                    <div class="carousel-item {% if loop.index == 1 %}active{% endif %}">
+
+                          <div class="card h-100">
+                            <div class="card-body">
+                              <h4 class="card-title">{{n['name']}} </h4>
+                              <form method="POST" action='/museum'>
+                                <div class="input-group">
+                                  <label for="m_id" class="form-control" >Click button for more...</label>
+                                  <input type="submit" name="m_id" value={{n['museum_id']}} class="btn btn-primary">
+                                </div>
+                              </form>
+                            </div>
+                            <div class="card-footer">
+                              <a href="{{n['website']}}" class="btn btn-primary btn-sm">External Website</a>
+                            </div>
+                          </div>
+
+                  </div>
+            
+                {% endfor %}
+
+              </div>
+
+              <a class="carousel-control-prev  vertical-center" 
+                 href="#carouselExampleControls" 
+                 role="button" 
+                 data-slide="prev"
+                 style="background-color: gray; 
+                        width: 35px; 
+                        height:35px;
+                        top: 40%">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" 
+                 href="#carouselExampleControls" 
+                 role="button" 
+                 data-slide="next"
+                 style="background-color: gray; 
+                        width: 35px; 
+                        height:35px;
+                        top: 40%">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+
+          </div>
+
+          {% else %}
+
+            <h3 class="font-weight-light" style="padding-bottom: 25px; color:black"> User Follows all the Museums of the App!</h3>
+
+          {% endif %}
+
+        </div>
+
+      </div>
+      <!-- /.row -->
+
+      <div class="row" style="padding-top: 25px">
+
+          <form class="d-md-inline-block form-inline mx-auto"
+                style="width: 400px;"
+                method="POST" action='/museum'>
+            <div class="input-group">
+              <input type="text" 
+                     name="name"
+                     class="form-control" 
+                     placeholder="Search for a specific Museum" 
+                     aria-label="Search" 
+                     aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="submit" value="Search">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+
+      </div>
+      <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  {% include 'footer.html' %}
+
+</body>
+{% endblock %}
+
+</html>

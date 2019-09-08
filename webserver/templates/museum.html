@@ -1,0 +1,89 @@
+<!-- Specific Museum page -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'head.html' %}
+
+{% block body %}
+<body style="padding-bottom: 100px; padding-top: 100px">
+
+  {% include 'navbar.html' %}
+
+  <!-- Page Content -->
+
+  <div class="container">
+
+    <div class="row text-center flex-column">
+      <div class="row justify-content-center">
+        <div class="col-lg-10 col-md-10 col-sm-10 col-10 mb-4">
+          <h1 class="font-weight-light">{{data['name']}}</h1>
+        </div>
+      </div>
+
+      <div class="row justify-content-center" style="height: 300px">
+          <div class="col-lg-3 col-md-6 col-sm-8 col-8 mb-4">
+            <div class="card h-100">
+              <div class="card-body"
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item" style="font-size: 13px">Description: {{data['description']}}</li>
+                  <li class="list-group-item" style="font-size: 13px">Address: {{data['address_number']}}, {{data['address_street']}}</li>
+                  <br>
+                  <form method='POST' action='/favorite'>
+                    <p><input type='submit' name='fav_value' value={{fav}} class="btn btn-primary" ></p>
+                  </form>
+                </ul>
+              </div>
+              <div class="card-footer">
+                <a href="{{data['website']}}" class="btn btn-primary">External Website</a>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-lg-10 col-md-10 col-sm-10 col-10"> 
+        <h1 class="font-weight-light" style="padding-top: 50px; padding-bottom: 50px">Upcoming Events</h1>
+      </div>
+
+      <!-- Post Content Column -->
+     <div class="col-lg-10 col-md-10 col-sm-10 col-10
+                  offset-lg-1 offset-md-1 offset-sm-1 offset-1">
+
+        {% if events %}
+
+          {% for n in events %}
+
+            <!-- Title -->
+            <h1 class="mt-4 font-weight-light">{{n['name']}}</h1>
+            <hr>
+
+            <!-- Post Content -->
+            <p class="lead">Event Date: {{n['event_date']}}</p>
+            <br>
+            <p style="text-align: center; padding: 0px !important">***</p>
+
+          {% endfor %}
+
+        {% else %}
+
+          <h3 class="font-weight-light" style="padding-bottom: 25px; color:black"> Unfortunately, there are no Upcoming Events Yet...</h3>
+
+        {% endif %} 
+
+      </div>
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  {% include 'footer.html' %}
+
+</body>
+{% endblock %}
+
+</html>

@@ -1,0 +1,85 @@
+<!-- Notebook page -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'head.html' %}
+
+{% block body %}
+<body style="padding-bottom: 100px; padding-top: 100px">
+
+  {% include 'navbar.html' %}
+
+    <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
+
+        <h1 class="font-weight-light">Previous Posts</h1>
+
+        <!-- Post Content Column -->
+        <div class="col-lg-10 col-md-10 col-sm-10 col-10
+                    offset-lg-1 offset-md-1 offset-sm-1 offset-1">
+
+          {% if data %}
+
+            {% for n in data %}
+
+              <!-- Title -->
+              <h1 class="mt-4 font-weight-light">{{n['title']}}</h1>
+              <!-- Date/Time -->
+              <p>Posted on, {{n['entry_date']}}</p>
+              <hr>
+              <!-- Post Content -->
+              <p class="lead">{{n['entry_text']}}</p>
+              <br>
+
+              <p style="text-align: center; padding: 0px !important">***</p>
+
+            {% endfor %}
+
+          {% else %}
+
+            <h3 class="font-weight-light" style="padding-bottom: 25px; color:black">Go Ahead and Start your Notebook!</h3>
+
+          {% endif %}
+
+        </div>
+      </div>
+
+    </div>
+    <!-- /.row -->
+
+    <!-- New Post Form -->
+    <div class="row">
+      <div class="col-lg-10 col-md-10 col-sm-10 col-10
+                    offset-lg-1 offset-md-1 offset-sm-1 offset-1">
+        <div class="card my-4">
+          <h5 class="card-header font-weight-light">Create a New Post:</h5>
+          <div class="card-body">
+            <form method='POST' action='/notebook'>
+              <h4 class="font-weight-light">Title:</h4>
+              <input type='text' name='title' style="width:100%">
+              <hr>
+              <div class="form-group">
+                <h4 class="font-weight-light">Text:</h4>
+                <textarea class="form-control" rows="3" name='entry_text'></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" value='Save'>Save</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  {% include 'footer.html' %}
+
+</body>
+{% endblock %}
+
+</html>
